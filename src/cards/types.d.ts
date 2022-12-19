@@ -27,6 +27,7 @@ export type StatCardOptions = CommonOptions & {
 export type RepoCardOptions = CommonOptions & {
   hide_border: boolean;
   show_owner: boolean;
+  max_lines: number;
 };
 
 export type TopLangOptions = CommonOptions & {

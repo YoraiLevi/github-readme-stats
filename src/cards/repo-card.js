@@ -108,6 +108,7 @@ const renderRepoCard = (repo, options = {}) => {
     border_radius,
     border_color,
     locale,
+    max_lines,
   } = options;
 
   const lineHeight = 10;
@@ -116,8 +117,8 @@ const renderRepoCard = (repo, options = {}) => {
   const langColor = (primaryLanguage && primaryLanguage.color) || "#333";
 
   const desc = parseEmojis(description || "No description provided");
-  const multiLineDescription = wrapTextMultiline(desc);
-  const descriptionLines = multiLineDescription.length;
+  const multiLineDescription = wrapTextMultiline(desc, 59, max_lines || 3);
+  const descriptionLines = max_lines || multiLineDescription.length;
   const descriptionSvg = multiLineDescription
     .map((line) => `<tspan dy="1.2em" x="25">${encodeHTML(line)}</tspan>`)
     .join("");
@@ -163,7 +164,7 @@ const renderRepoCard = (repo, options = {}) => {
     defaultTitle: header.length > 35 ? `${header.slice(0, 35)}...` : header,
     titlePrefixIcon: icons.contribs,
     width: 400,
-    height,
+    height: height,
     border_radius,
     colors,
   });
