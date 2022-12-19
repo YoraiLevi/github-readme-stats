@@ -160,8 +160,12 @@ const renderRepoCard = (repo, options = {}) => {
     gap: 25,
   }).join("");
 
+  let headerCutoff = isTemplate || isArchived ? 25 : 35;
   const card = new Card({
-    defaultTitle: header.length > 35 ? `${header.slice(0, 35)}...` : header,
+    defaultTitle:
+      header.length > headerCutoff
+        ? `${header.slice(0, headerCutoff)}...`
+        : header,
     titlePrefixIcon: icons.contribs,
     width: 400,
     height: height,
